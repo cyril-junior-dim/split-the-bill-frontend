@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SplitTheBill</string>
+    <string name="textview">This application is managing and planning the workflow might be tricky, therefore our team put a lot of effort into planning out the Gantt chart properly.</string>
+    <string name="splitthebill">SplitTheBill</string>
+</resources>
