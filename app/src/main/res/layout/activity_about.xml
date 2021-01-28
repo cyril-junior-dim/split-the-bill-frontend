@@ -8,71 +8,25 @@
 
     <Button
         android:id="@+id/login7"
-        android:layout_width="166dp"
-        android:layout_height="61dp"
+        android:layout_width="352dp"
+        android:layout_height="447dp"
         android:fontFamily="sans-serif"
-        android:text="Profile"
+        android:text='"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
         android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textSize="18sp"
         android:typeface="sans"
         app:backgroundTint="@android:color/secondary_text_light_nodisable"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="235dp" />
-
-    <Button
-        android:id="@+id/login9"
-        android:layout_width="166dp"
-        android:layout_height="57dp"
-        android:fontFamily="sans-serif"
-        android:text="Theme"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:typeface="sans"
-        app:backgroundTint="@android:color/secondary_text_light_nodisable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="310dp" />
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="171dp"
-        android:layout_height="56dp"
-        android:fontFamily="sans-serif"
-        android:text="Notifications"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:typeface="sans"
-        app:backgroundTint="@android:color/secondary_text_light_nodisable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="386dp" />
-
-    <Button
-        android:id="@+id/login8"
-        android:layout_width="171dp"
-        android:layout_height="53dp"
-        android:fontFamily="sans-serif"
-        android:text="Preferences"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:typeface="sans"
-        app:backgroundTint="@android:color/secondary_text_light_nodisable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="464dp" />
+        tools:layout_editor_absoluteY="142dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:background="#FFFFFF"
         android:text="SplitTheBill"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -81,5 +35,17 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="278dp"
+        android:layout_height="51dp"
+        android:text="A paragraph of text with contact link"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="633dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
