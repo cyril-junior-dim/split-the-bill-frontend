@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/edt_back"
     tools:context=".MainActivity">
 
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="130dp"
         app:cardBackgroundColor="#FFFCFC"
         app:cardCornerRadius="8dp"
         app:cardElevation="16dp"
@@ -24,8 +24,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="473dp"
+            android:layout_height="500"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="197dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center"
+                android:text="SplitTheBill"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/textView"
@@ -89,16 +98,6 @@
                 android:padding="8dp"
                 android:textSize="14dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                android:checked="true"
-                android:text="I agree to Terms and Condition" />
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
@@ -157,4 +156,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
