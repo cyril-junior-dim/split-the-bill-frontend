@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SplitTheBill</string>
+    <string name="splitthebill">SplitTheBill</string>
+    <string name="username_or_email">Username or Email</string>
 </resources>
