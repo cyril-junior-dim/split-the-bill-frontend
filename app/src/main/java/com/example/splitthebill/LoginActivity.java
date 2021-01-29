@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
@@ -18,11 +22,17 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button login;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
 
         progressBar = findViewById(R.id.loginProgressBar);
         username = findViewById(R.id.emailAddress);
