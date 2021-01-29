@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="facebook" type="id">facebook</item>
+    <item name="skype" type="id">skype</item>
+    <item name="twitter" type="id">twitter</item>
+    <item name="register" type="id">register</item>
+    <item name="rConfirmPwd" type="id">rConfirmPwd</item>
+    <item name="rPassword" type="id">rPassword</item>
+    <item name="rEmail" type="id">rEmail</item>
+    <item name="rUsername" type="id">rUsername</item>
+</resources>

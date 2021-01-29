@@ -2,4 +2,11 @@
     <string name="app_name">SplitTheBill</string>
     <string name="splitthebill">SplitTheBill</string>
     <string name="username_or_email">Username or Email</string>
-</resources>
+    <string
+    <string name="create_account">Create Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="sign_up_with">Sign Up With</string>

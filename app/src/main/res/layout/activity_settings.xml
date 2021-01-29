@@ -8,72 +8,61 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="250sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generating Stats..."
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="150dp"
+        android:text="@string/splitthebill"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_bills"
+        android:id="@+id/btn_profile"
         android:layout_width="150dp"
         android:layout_height="75sp"
-        android:layout_marginTop="125dp"
-        android:backgroundTint="@android:color/transparent"
-        android:text="My Bills"
+        android:layout_marginTop="50dp"
+        android:text="Profile"
         android:textColor="#000000"
+        android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/btn_friends"
+        android:id="@+id/btn_themes"
         android:layout_width="150sp"
         android:layout_height="75sp"
         android:layout_marginTop="8dp"
-        android:text="Friends"
+        android:text="Themes"
         android:textColor="#000000"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_bills" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile" />
 
     <Button
-        android:id="@+id/btn_settings"
+        android:id="@+id/btn_notifications"
         android:layout_width="150sp"
         android:layout_height="75sp"
         android:layout_marginTop="8dp"
-        android:text="Settings"
+        android:text="Notifications"
         android:textColor="#000000"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_friends" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_themes" />
 
     <Button
-        android:id="@+id/btn_about"
+        android:id="@+id/btn_preferences"
         android:layout_width="150sp"
         android:layout_height="75sp"
         android:layout_marginTop="8dp"
-        android:text="About"
+        android:text="Preferences"
         android:textColor="#000000"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_settings" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="Latest Bill"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_notifications" />
 </androidx.constraintlayout.widget.ConstraintLayout>
