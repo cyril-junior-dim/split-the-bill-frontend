@@ -10,10 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
@@ -22,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button login;
 
+    private String email, pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +44,19 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, HomeActivity.class));
         }
 
-        progressBar = findViewById(R.id.loginProgressBar);
+        // Input fields
         username = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
+
+        // Alternatives to login
         signUp = findViewById(R.id.goToSignUp);
         forgotPwd = findViewById(R.id.forgotPassword);
+
+        // Confirm
         login = findViewById(R.id.login);
 
+        // Progress bar
+        progressBar = findViewById(R.id.loginProgressBar);
         progressBar.setVisibility(View.GONE);
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -52,23 +68,83 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = username.getText().toString().trim();
-                String pwd = password.getText().toString().trim();
+                email = username.getText().toString().trim();
+                pwd = password.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     username.setError("Username or Email is required");
+                    username.requestFocus();
                     return;
                 }
 
                 if(TextUtils.isEmpty(pwd)){
                     password.setError("Password is required");
+                    password.requestFocus();
                     return;
                 }
+
+                userLogin();
 
                 progressBar.setVisibility(View.VISIBLE);
 
             }
         });
+    }
 
+    private void userLogin() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressBar.setVisibility(View.GONE);
+
+                        try {
+                            //converting response to json object
+                            JSONObject obj = new JSONObject(response);
+
+                            //if no error in response
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                //getting the user from the response
+                                JSONObject userJson = obj.getJSONObject("user");
+
+                                //creating a new user object
+                                User user = new User(
+                                        userJson.getString("username"),
+                                        userJson.getString("email")
+                                );
+
+                                //storing the user in shared preferences
+                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                                //starting the profile activity
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", email);
+                params.put("password", pwd);
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
+
