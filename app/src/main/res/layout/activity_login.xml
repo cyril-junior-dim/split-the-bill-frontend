@@ -30,7 +30,7 @@
         android:layout_marginRight="24dp"
         android:background="@color/black"
         android:ems="10"
-        android:hint="@string/username_or_email"
+        android:hint="Username or Email"
         android:inputType="textEmailAddress"
         android:padding="10sp"
         android:textColor="#FFFFFF"
@@ -69,8 +69,7 @@
         android:layout_marginTop="24dp"
         android:text="LOGIN"
         android:textColor="#000000"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@android:color/transparent"        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
