@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/edt_back"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -24,15 +24,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500"
+            android:layout_height="500sp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="197dp"
-                android:layout_height="62dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="SplitTheBill"
+                android:text="@string/splitthebill"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="#000000" />
 
@@ -43,73 +43,76 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Create new account" />
+                android:text="Create Account" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/rUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="@drawable/edt_back"
+                android:background="@color/black"
                 android:ems="10"
-                android:fontFamily="@font/montserrat"
                 android:hint="Username"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textSize="14dp" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/edt_back"
-                android:ems="10"
-                android:fontFamily="@font/montserrat"
-                android:hint="Email"
                 android:inputType="textPersonName"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/rEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="@drawable/edt_back"
+                android:background="@color/black"
                 android:ems="10"
-                android:fontFamily="@font/montserrat"
-                android:hint="Enter Your Password"
-                android:inputType="number"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/rPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="@drawable/edt_back"
+                android:background="@color/black"
                 android:ems="10"
-                android:fontFamily="@font/montserrat"
-                android:hint="Confirm Your Password"
+                android:hint="Enter password"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/button"
+            <EditText
+                android:id="@+id/rConfirmPwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/black"
+                android:ems="10"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="6dp"
-                android:background="@android:color/background_dark"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Continue"
-                android:textColor="#fff" />
+                android:text="Register"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -117,8 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Signup using" />
+                android:text="Sign Up With" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -129,32 +131,45 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/facebook"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/facebook" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/skype"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/skype" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/twitter"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/twitter" />
-            </LinearLayout>
 
+            </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:id="@+id/registerProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
