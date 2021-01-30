@@ -157,6 +157,13 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/goToSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Have an account? Sign in" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

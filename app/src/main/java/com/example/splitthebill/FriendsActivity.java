@@ -1,6 +1,4 @@
-package com.example.myapplication;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.splitthebill;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +6,8 @@ import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class FriendsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_friends);
         listView = findViewById(R.id.listView);
         etSearch = findViewById(R.id.etSearch);
         months.add("Joe");

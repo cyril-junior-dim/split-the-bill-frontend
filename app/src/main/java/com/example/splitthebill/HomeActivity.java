@@ -26,12 +26,14 @@ public class HomeActivity extends AppCompatActivity {
 
         //comment
 
+        /*
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
         }
         });
+         */
 
         about.setOnClickListener(new View.OnClickListener() {
             @Override
