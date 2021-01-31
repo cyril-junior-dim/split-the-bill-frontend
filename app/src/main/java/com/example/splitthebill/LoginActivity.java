@@ -1,8 +1,10 @@
 package com.example.splitthebill;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,42 +113,32 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+
                         progressBar.setVisibility(View.GONE);
 
                         try {
+                            User user = new User(
+                                    response.getString("token"),
+                                    response.getString("type")
+                            );
 
-                            //if no error in response
-                            if (!response.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), response.getString("Success!"), Toast.LENGTH_SHORT).show();
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                                //getting the user from the response
-                                JSONObject userJson = response.getJSONObject("user");
-
-                                //creating a new user object
-                                User user = new User(
-                                        userJson.getString("token"),
-                                        userJson.getString("type")
-                                );
-
-                                //storing the user in shared preferences
-                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                                //starting the profile activity
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("Failed"), Toast.LENGTH_SHORT).show();
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     }
                 },
                 new Response.ErrorListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println(new String(error.networkResponse.data, StandardCharsets.UTF_8));
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 }) {
         };

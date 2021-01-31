@@ -42,8 +42,13 @@ public class HomeActivity extends AppCompatActivity {
 
         sendPersonRequest();
 
-
         //comment
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FriendsActivity.class));
+            }
+        });
 
         /*
         settings.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +101,6 @@ public class HomeActivity extends AppCompatActivity {
                 return headers;
             }
         };
-
         queue.add(jsonObjectRequest);
     }
 }

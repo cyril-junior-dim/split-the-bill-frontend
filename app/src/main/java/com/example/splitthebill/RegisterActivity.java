@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
     ProgressBar progressBar;
@@ -43,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //if the user is already logged in we will directly start the MainActivity (profile) activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -120,14 +121,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                registerUser(email, username, password);
+                loginUser(email, username, password);
             }
         });
-
-
     }
 
-    private void registerUser(String email, String username, String password) {
+    private void loginUser(String email, String username, String password) {
         JSONObject obj = new JSONObject();
 
         try {
@@ -159,7 +158,6 @@ public class RegisterActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        // finish();
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     }
                 },
