@@ -1,36 +1,26 @@
 package com.example.splitthebill;
 
 public class User {
-    private int id;
-    private String username, email;
+    private String token, type;
 
-    public User(int id, String username, String email) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
+    public User(String token, String type) {
+        this.token = token;
+        this.type = type;
     }
 
-    public int getId() {
-        return id;
+    public String getToken() {
+        return token;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getName() {
-        return username;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setType(String type) {
+        this.type = type;
     }
 }

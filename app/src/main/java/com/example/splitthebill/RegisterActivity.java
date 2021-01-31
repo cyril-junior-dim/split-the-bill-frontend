@@ -1,8 +1,10 @@
 package com.example.splitthebill;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,12 +19,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        String url ="https://www.google.com";
+        queue = Volley.newRequestQueue(this);
 
         // Text Inputs
         rUsername = findViewById(R.id.rUsername);
@@ -116,68 +120,60 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                registerUser();
+                registerUser(email, username, password);
             }
         });
 
 
     }
 
-    private void registerUser() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
-                new Response.Listener<String>() {
+    private void registerUser(String email, String username, String password) {
+        JSONObject obj = new JSONObject();
+
+        try {
+            obj.put("username", username);
+            obj.put("password", password);
+            obj.put("email", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.URL_REGISTER, obj,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+
                         progressBar.setVisibility(View.GONE);
 
+                        //creating a new user object
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            User user = new User(
+                                    response.getString("token"),
+                                    response.getString("type")
+                            );
 
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                                //creating a new user object
-                                User user = new User(
-                                        userJson.getInt("id"),
-                                        userJson.getString("username"),
-                                        userJson.getString("email")
-                                );
-
-                                //storing the user in shared preferences
-                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-
-                                //starting the profile activity
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        // finish();
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     }
                 },
                 new Response.ErrorListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println(new String(error.networkResponse.data, StandardCharsets.UTF_8));
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-                params.put("email", email);
-                return params;
-            }
         };
 
-        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+        queue.add(jsonObjectRequest);
     }
 }

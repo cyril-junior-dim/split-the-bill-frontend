@@ -14,9 +14,12 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotPwd;
     ProgressBar progressBar;
     Button login;
+    RequestQueue queue;
 
     private String email, pwd;
 
@@ -43,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, HomeActivity.class));
         }
+
+        queue = Volley.newRequestQueue(this);
 
         // Input fields
         username = findViewById(R.id.emailAddress);
@@ -82,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                     password.requestFocus();
                     return;
                 }
-
                 userLogin();
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -92,28 +97,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
-                new Response.Listener<String>() {
+        JSONObject obj = new JSONObject();
+
+        try {
+            obj.put("password", email);
+            obj.put("username", username);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.URL_LOGIN, obj,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         progressBar.setVisibility(View.GONE);
 
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
 
                             //if no error in response
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            if (!response.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), response.getString("Success!"), Toast.LENGTH_SHORT).show();
 
                                 //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
+                                JSONObject userJson = response.getJSONObject("user");
 
                                 //creating a new user object
                                 User user = new User(
-                                        userJson.getInt("id"),
-                                        userJson.getString("username"),
-                                        userJson.getString("email")
+                                        userJson.getString("token"),
+                                        userJson.getString("type")
                                 );
 
                                 //storing the user in shared preferences
@@ -122,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                             } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), obj.getString("Failed"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -132,20 +143,13 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
-                })
-        {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", email);
-                params.put("password", pwd);
-                return params;
-            }
+                }) {
         };
-        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+        queue.add(jsonObjectRequest);
     }
 }
 
