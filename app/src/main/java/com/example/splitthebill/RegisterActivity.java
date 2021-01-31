@@ -44,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //if the user is already logged in we will directly start the MainActivity (profile) activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {

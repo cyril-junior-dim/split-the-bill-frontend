@@ -76,9 +76,7 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-
                         System.out.print(response.toString());
-
                         // finish();
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     }
@@ -87,8 +85,8 @@ public class HomeActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println(error.networkResponse.statusCode);
-                        System.out.println(new String(error.networkResponse.data, StandardCharsets.UTF_8));
+                        //System.out.println(error.networkResponse.statusCode);
+                        //System.out.println(new String(error.networkResponse.data, StandardCharsets.UTF_8));
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
