@@ -1,7 +1,7 @@
 # Split The Bill Frontend
 
 <h2>Description</h2>
-The aim of our application is to provide people with a simple tool that allows people to wisely split and manage shared expenses. Calculating exact amounts due, as well as working out effective systems of compensating each other will become a straightforward and logged process.
+An interactive User Interface for the Split The Bill app, designed in Android Studio with Java. The aim of the application is to provide a simple tool that allows people to wisely split and manage shared expenses. Calculating exact amounts due, as well as working out effective systems of compensating each other will become a straightforward and logged process.
 <br />
 <br />
 The front-end implementation requires that the installation package be run to completion. After initial installation, users have limited access to the application unless they register with valid credentials. The target device will also be required to support the Java SDK.
